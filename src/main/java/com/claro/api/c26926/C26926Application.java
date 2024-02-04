@@ -17,13 +17,13 @@ import java.util.Map;
 @SpringBootApplication
 public class C26926Application {
 
-
     public static void main(String[] args) {
         SpringApplication.run(C26926Application.class, args);
     }
 
     /**
      * Bean que configura la información de la API para la documentación de Swagger.
+     * 
      * @return una instancia de OpenAPI con la información de la API.
      */
     @Bean
@@ -31,20 +31,18 @@ public class C26926Application {
         return new OpenAPI()
                 .info(new Info()
                         .title("Spring Boot API CLARO por C26926")
+                        .contact(new io.swagger.v3.oas.models.info.Contact().email("jairodaniel.mt@gmail.com"))
                         .version("0.0.0")
-                        .description("Las API que desarrolle las pueden probar aquí como también leer la documentación de cada endpoint")
+                        .description(
+                                "Las API que desarrolle las pueden probar aquí como también leer la documentación de cada endpoint")
                         .termsOfService("https://www.google.com/")
                         .license(new License().name("MIT").url("https://www.google.com/")));
     }
 
     @RestController
     static class HelloController {
-        @Operation(
-                tags = {"Bienvenida"},
-                method = "GET",
-                summary = "Saludo",
-                description = "Retorna un saludo en formato de JSON."
-        )
+        @Operation(tags = {
+                "Bienvenida" }, method = "GET", summary = "Saludo", description = "Retorna un saludo en formato de JSON.")
         @GetMapping("/")
         public Map<String, String> hello() {
             Map<String, String> diccionario = new HashMap<>();
